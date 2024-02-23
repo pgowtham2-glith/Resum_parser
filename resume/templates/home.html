@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo</title>
+</head>
+<body style="background-image:url('{% static 'bg_pic.jpg' %}'); background-size:1500px 725px; background-repeat:no-repeat">
+
+  <h1 style="color: rgb(80, 226, 43); margin-left:60px; font-size:xx-large; background-color:#333;
+  overflow: hidden;padding:0px;margin:0px;box-sizing:border-box;border-radius:20px; text-align:center">Resume</h1><br>
+  <a href="{% url 'calc:home' %}"><button style="margin-left: 1200px; border-color: antiquewhite; color: black;">home</button></a>
+  <a href="{% url 'calc:about' %}"><button style="margin-left: 20px; border-color: antiquewhite; color: black;">about us</button></a>
+  <a href="{% url 'calc:contact' %}"><button style="margin-left: 20px; border-color: antiquewhite; color: black;">contact</button></a><br><br><br><br><br><br><br><br><br><br>
+  <center>
+    <h2 style="color:crimson;">Upload A File</h2>
+    <div>
+      {% block content %}
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <style>
+        
+          .form-container {
+                border: 2px solid blue; padding: 20px; width: 300px; margin: auto; background-color:darkmagenta; border-radius: 20px;
+            }
+            label {
+                color: blueviolet;
+                display: block; 
+                margin-bottom: 5px; 
+            }
+            input[type="file"] {
+        
+            }
+            button {
+              
+                color: rgb(255, 47, 175);
+            }
+        </style>
+        <div class="form-container">
+            <label for="file" style="color: orange; margin-right:60px" >Choose file to upload</label>
+            <input type="file" name="file" /><br><br>
+            <button type='submit' style="color: rgb(255, 47, 175);margin-right:60px">Submit</button>
+        </div>
+      </form>
+      {% endblock %}
+    </div>
+  </center>
+</body>
+</html>
